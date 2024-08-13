@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 """
   ArbotiX Terminal - command line terminal to interact with an ArbotiX
@@ -11,10 +11,10 @@
       * Redistributions in binary form must reproduce the above copyright
         notice, this list of conditions and the following disclaimer in the
         documentation and/or other materials provided with the distribution.
-      * Neither the name of Vanadium Labs LLC nor the names of its
-        contributors may be used to endorse or promote products derived
+      * Neither the name of Vanadium Labs LLC nor the names of its 
+        contributors may be used to endorse or promote products derived 
         from this software without specific prior written permission.
-
+  
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
   ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
   WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -58,17 +58,17 @@ class Terminal(ArbotiX):
 
     def __init__(self, port = "/dev/ttyUSB0", baud = 115200):
         # start
-        ArbotiX.__init__(self, port, baud)
+        ArbotiX.__init__(self, port, baud)  
         print("ArbotiX Terminal --- Version 0.1")
         print("Copyright 2011 Vanadium Labs LLC")
 
         # loop
         while True:
-            kmd = raw_input(">> ").split(" ") # Changed input() to raw_input() for Python 2.7
+            kmd = input(f">> ").split(" ")
             try:
                 if kmd[0] == "help":        # display help data
                     if len(kmd) > 1:        # for a particular command
-                        if kmd[1] == "ls":
+                        if kmd[1] == "ls":   
                             print(help[3])
                         elif kmd[1] == "mv":
                             print(help[4])
@@ -76,7 +76,7 @@ class Terminal(ArbotiX):
                             print(help[5])
                         elif kmd[1] == "get":
                             print(help[6])
-                        elif kmd[1] == "set":
+                        elif kmd[1] == "set":   
                             print(help[7])
                         else:
                             print("help: unrecognized command")
@@ -131,7 +131,7 @@ class Terminal(ArbotiX):
                             print(self.OKGREEN+str(value)+self.ENDC)
                         else:
                             print(self.FAIL+str(value)+self.ENDC)
-
+        
             except Exception as e:
                 print("error...", e)
 
@@ -142,13 +142,13 @@ class Terminal(ArbotiX):
                 if k > 8:
                     k = 0
                     print("")
-                print(repr(i+1).rjust(4)), # Removed end="\t" for Python 2.7 compatibility
+                print(repr(i+1).rjust(4), end="\t"),
                 k = k + 1
             else:
                 if k > 8:
                     k = 0
                     print("")
-                print(" ...."), # Removed end="\t" for Python 2.7 compatibility
+                print(" ....", end="\t")
                 k = k + 1
             sys.stdout.flush()
         print("")
@@ -166,7 +166,7 @@ class Terminal(ArbotiX):
             return 16
         elif b == 57600:
             return 34
-        elif b == 19200:
+        elif b == 19200:    
             return 103
         elif b == 9600:
             return 207
@@ -184,3 +184,5 @@ if __name__ == "__main__":
             t = Terminal()
     except KeyboardInterrupt:
         print("\nExiting...")
+
+
